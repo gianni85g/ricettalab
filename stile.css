@@ -224,14 +224,38 @@ h3 { font-size: 1.2rem; line-height: 1.3; font-variation-settings: "opsz" 20; }
 }
 
 .esempio {
-  margin-top: 40px; padding: 24px 28px; border-radius: var(--raggio);
-  background: var(--ambra-tinta); color: var(--inchiostro);
-  display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
+  margin-top: 48px; padding: clamp(22px, 4vw, 32px); border-radius: 20px;
+  background: var(--alzata); border: 1px solid var(--linea); box-shadow: var(--ombra);
   max-width: 760px;
 }
-.esempio svg { width: 24px; height: 24px; color: var(--ambra); margin-top: 2px; }
-.esempio p { margin: 0; }
-.esempio strong { font-weight: 620; }
+.esempio .sopratitolo { margin-bottom: 10px; }
+.esempio-testo { margin: 0; max-width: 62ch; }
+.esempio-testo strong { font-weight: 620; }
+.scambio {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+  margin: 22px 0 18px; font-weight: 560;
+}
+.scambio span { padding: 8px 14px; border-radius: 999px; background: var(--campo); }
+.scambio span:last-child { background: var(--verde-tinta); color: var(--verde); }
+.scambio svg { width: 20px; height: 20px; color: var(--secondario); }
+.casi { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.casi li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; padding: 14px 16px; border-radius: 14px; }
+.casi li.si { background: var(--verde-tinta); }
+.casi li.no { background: var(--ruggine-tinta); }
+.casi svg { width: 22px; height: 22px; margin-top: 2px; }
+.casi li.si svg { color: var(--verde); }
+.casi li.no svg { color: var(--ruggine); }
+.casi strong { display: block; font-weight: 600; }
+.casi span { color: var(--inchiostro); }
+
+/* Legenda dei colori di affidabilità */
+.legenda { margin: 0 0 clamp(40px, 6vw, 64px); padding: clamp(22px, 4vw, 32px); border-radius: 20px; background: var(--carta); border: 1px solid var(--linea); max-width: 760px; }
+.legenda h3 { margin-bottom: 16px; }
+.legenda ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.legenda li { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; }
+.legenda li > span:last-child { color: var(--secondario); }
+.legenda .segno-dato { justify-self: start; font-size: 0.92rem; padding: 5px 12px; }
+@media (max-width: 480px) { .legenda li { grid-template-columns: 1fr; gap: 4px; } }
 
 /* Combinazione */
 .catena { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 8px; padding: 0; list-style: none; }
@@ -264,7 +288,7 @@ h3 { font-size: 1.2rem; line-height: 1.3; font-variation-settings: "opsz" 20; }
 .segno-dato::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .segno-dato.letto { background: var(--verde-tinta); color: var(--verde); }
 .segno-dato.interpretato { background: var(--ambra-tinta); color: color-mix(in srgb, var(--ambra) 82%, var(--inchiostro)); }
-.segno-dato.mancante { background: var(--ruggine-tinta); color: var(--ruggine); }
+.segno-dato.mancante { background: var(--ruggine-tinta); color: color-mix(in srgb, var(--ruggine) 88%, var(--inchiostro)); }
 
 /* Crediti */
 .crediti { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
@@ -324,3 +348,4 @@ h3 { font-size: 1.2rem; line-height: 1.3; font-variation-settings: "opsz" 20; }
 .stato .punto { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 22%, transparent); }
 .presto { display: inline-flex; align-items: center; gap: 8px; margin: 20px 0 0; color: var(--secondario); font-size: 0.95rem; font-weight: 540; }
 .presto svg { width: 18px; height: 18px; color: var(--verde); }
+@media (max-width: 480px) { .scambio { flex-direction: column; align-items: flex-start; gap: 6px; } .scambio svg { transform: rotate(90deg); margin-left: 14px; } }

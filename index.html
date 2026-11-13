@@ -201,10 +201,19 @@
         </ol>
 
         <div class="esempio">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
-          <p><strong>Lo yogurt al posto della panna impazzisce se bolle.</strong>
-            RicettaLab lo sa, e invece di proportelo ti avvisa. Conta il ruolo
-            che un ingrediente ha nel piatto, non solo le sue calorie.</p>
+          <p class="sopratitolo">Un esempio: alleggerire la panna</p>
+          <p class="esempio-testo">Lo yogurt greco ha molte meno calorie della panna, ma
+            se cuoce a lungo <strong>si separa</strong> e il piatto è rovinato. Per
+            questo RicettaLab non lo propone sempre: guarda come viene cotta la ricetta.</p>
+          <div class="scambio" aria-label="Sostituzione: panna da cucina con yogurt greco 0%">
+            <span>Panna da cucina</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg><span>Yogurt greco 0%</span>
+          </div>
+          <ul class="casi">
+            <li class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><div><strong>Pasta panna e salmone</strong>
+              <span>Proposto, con un consiglio: aggiungilo a fuoco spento, all'ultimo.</span></div></li>
+            <li class="no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><div><strong>Lasagne al forno</strong>
+              <span>Non proposto: in forno lo yogurt si separerebbe.</span></div></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -256,43 +265,49 @@
     <section class="sezione alzata" aria-labelledby="titolo-fiducia">
       <div class="contenitore">
         <div class="testa">
-          <p class="sopratitolo">Di cosa ti puoi fidare</p>
-          <h2 id="titolo-fiducia">Non tira a indovinare. Te lo dice.</h2>
+          <p class="sopratitolo">Perché puoi fidarti</p>
+          <h2 id="titolo-fiducia">Quando non è sicura, te lo dice.</h2>
+          <p class="introduzione">Un'app che legge ricette può sbagliare. RicettaLab
+            non nasconde i dubbi: ti mostra cosa ha capito bene e cosa devi controllare.</p>
         </div>
+
+        <div class="legenda">
+          <h3>Prima di salvare, ogni dato ha un colore</h3>
+          <ul>
+            <li><span class="segno-dato letto">Letto</span>
+              <span>scritto chiaramente sul sito: puoi fidarti.</span></li>
+            <li><span class="segno-dato interpretato">Interpretato</span>
+              <span>l'app ha dovuto dedurlo: dagli un'occhiata.</span></li>
+            <li><span class="segno-dato mancante">Mancante</span>
+              <span>non c'era: lo aggiungi tu, se vuoi.</span></li>
+          </ul>
+        </div>
+
         <ul class="fiducia">
           <li>
-            <h3>Ogni dato ha una fonte</h3>
-            <p>Letto dal sito, interpretato o mancante: un segno colorato lo
-              dice, e il dettaglio è a un tocco.</p>
-            <div class="segni" aria-hidden="true">
-              <span class="segno-dato letto">letto</span>
-              <span class="segno-dato interpretato">da controllare</span>
-              <span class="segno-dato mancante">mancante</span>
-            </div>
+            <h3>Calorie: sai da dove vengono</h3>
+            <p>Se il sito le dichiara usa quelle, altrimenti le calcola dagli
+              ingredienti. In tutti e due i casi te lo scrive.</p>
           </li>
           <li>
-            <h3>Le ricette restano tue</h3>
-            <p>Salvate sul telefono, funzionano senza rete. Accedi con Google
-              solo per usare l'AI.</p>
+            <h3>Il robot non improvvisa</h3>
+            <p>Tempi, temperature e velocità vengono da una tabella preparata a mano.
+              Se un passaggio nel robot non si può fare, te lo dice.</p>
           </li>
           <li>
-            <h3>Niente foto altrui</h3>
-            <p>Le immagini dei siti sono di chi le ha scattate: l'app mostra la
-              fonte e la apre. L'unica foto è quella del piatto che hai cucinato tu.</p>
+            <h3>Le ricette restano sul telefono</h3>
+            <p>Le leggi anche senza internet. L'accesso con Google serve solo per le
+              funzioni con l'AI.</p>
           </li>
           <li>
-            <h3>Calorie oneste</h3>
-            <p>Calcolate dagli ingredienti o prese dal sito quando le dichiara,
-              e l'app dice sempre quale delle due.</p>
-          </li>
-          <li>
-            <h3>Robot senza invenzioni</h3>
-            <p>Velocità e tempi vengono da una tabella scritta a mano, non da un
-              modello che improvvisa.</p>
+            <h3>Solo le tue foto</h3>
+            <p>Le foto dei siti sono di chi le ha scattate, e l'app non le copia.
+              Puoi aggiungere la foto del piatto che hai cucinato tu.</p>
           </li>
           <li>
             <h3>Nessuna pubblicità</h3>
-            <p>Né banner né profilazione. L'app si paga solo quando usi l'AI.</p>
+            <p>Niente banner e niente profilazione. L'app è gratis: i crediti
+              servono solo per le funzioni con l'AI.</p>
           </li>
         </ul>
       </div>
