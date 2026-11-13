@@ -1,0 +1,324 @@
+/* RicettaLab — sito vetrina.
+ *
+ * Stessa tavolozza e stesso carattere dell'app (app/lib/tema/colori.dart,
+ * app/lib/tema/tipografia.dart): carta fredda, inchiostro quasi nero, un
+ * verde solo come accento, Inter dappertutto. Ambra e ruggine compaiono solo
+ * dove nell'app dicono quanto fidarsi di un dato.
+ */
+
+@font-face {
+  font-family: "Inter";
+  src: url("font/inter.woff2") format("woff2-variations"), url("font/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --carta: #fafaf8;
+  --alzata: #ffffff;
+  --inchiostro: #17191a;
+  --secondario: #5f656b;
+  --linea: #ebebe7;
+  --linea-forte: #c8cbc6;
+  --campo: #f1f2ee;
+  --verde: #205b47;
+  --verde-tinta: #e2efe9;
+  --su-verde: #fafaf8;
+  --ambra: #8c6a25;
+  --ambra-tinta: #f2ead7;
+  --ruggine: #a04e2b;
+  --ruggine-tinta: #f4e5dd;
+  --macchina: #15181a;
+  --macchina-testo: #cdd5cf;
+  --macchina-linea: #2e3539;
+  --ombra: 0 1px 2px rgb(23 25 26 / 0.04), 0 12px 32px -12px rgb(23 25 26 / 0.18);
+
+  --largo: 1120px;
+  --stretto: 680px;
+  --margine: clamp(16px, 4vw, 32px);
+  --raggio: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --carta: #141613;
+    --alzata: #1c1f1a;
+    --inchiostro: #e9ebe3;
+    --secondario: #98a093;
+    --linea: #2b302a;
+    --linea-forte: #3a4038;
+    --campo: #1c1f1a;
+    --verde: #6fc3a2;
+    --verde-tinta: #17251f;
+    --su-verde: #0f1a15;
+    --ambra: #d0ac66;
+    --ambra-tinta: #2b2618;
+    --ruggine: #d08a64;
+    --ruggine-tinta: #2e1f17;
+    --macchina: #0d0f0e;
+    --macchina-testo: #c6cfc8;
+    --macchina-linea: #262c28;
+    --ombra: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px -16px rgb(0 0 0 / 0.6);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  margin: 0;
+  background: var(--carta);
+  color: var(--inchiostro);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  font-variation-settings: "opsz" 16;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: var(--verde); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; border-radius: 6px; }
+
+.salta {
+  position: absolute; left: 16px; top: -60px; z-index: 50;
+  background: var(--verde); color: var(--su-verde); padding: 10px 16px; border-radius: 10px;
+}
+.salta:focus { top: 12px; }
+
+.contenitore { width: min(100% - 2 * var(--margine), var(--largo)); margin-inline: auto; }
+
+/* ── Titoli ─────────────────────────────────────────────────────────────── */
+
+h1, h2, h3 { margin: 0; font-weight: 560; letter-spacing: -0.022em; text-wrap: balance; }
+h1 { font-size: clamp(2.6rem, 6.4vw, 4.6rem); line-height: 1.04; letter-spacing: -0.035em; font-variation-settings: "opsz" 32; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.1; font-variation-settings: "opsz" 32; }
+h3 { font-size: 1.2rem; line-height: 1.3; font-variation-settings: "opsz" 20; }
+
+.sopratitolo {
+  margin: 0 0 14px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--verde);
+}
+
+.introduzione { margin: 18px 0 0; max-width: 56ch; color: var(--secondario); font-size: 1.12rem; }
+
+/* ── Barra ──────────────────────────────────────────────────────────────── */
+
+.barra {
+  position: sticky; top: 0; z-index: 30;
+  background: color-mix(in srgb, var(--carta) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+  -webkit-backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 200ms ease;
+}
+.barra.staccata { border-bottom-color: var(--linea); }
+.barra .contenitore { display: flex; align-items: center; gap: 24px; min-height: 68px; }
+
+.marchio { display: inline-flex; align-items: center; gap: 10px; color: var(--inchiostro); text-decoration: none; font-weight: 620; font-size: 1.08rem; letter-spacing: -0.01em; }
+.marchio .segno { width: 34px; height: 34px; border-radius: 9px; background: var(--verde); color: var(--su-verde); display: grid; place-items: center; }
+.marchio .segno svg { width: 24px; height: 24px; }
+
+.voci { display: flex; gap: 4px; margin: 0 0 0 auto; padding: 0; list-style: none; }
+.voci a { display: block; padding: 10px 12px; border-radius: 10px; color: var(--secondario); text-decoration: none; font-size: 0.95rem; transition: color 150ms ease, background-color 150ms ease; }
+.voci a:hover { color: var(--inchiostro); background: var(--campo); }
+
+@media (max-width: 760px) { .voci { display: none; } .barra .pulsante { margin-left: auto; } }
+
+/* ── Pulsanti ───────────────────────────────────────────────────────────── */
+
+.pulsante {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 22px; border-radius: 999px;
+  background: var(--verde); color: var(--su-verde);
+  font-weight: 600; font-size: 1rem; text-decoration: none; white-space: nowrap;
+  cursor: pointer; border: 0;
+  transition: background-color 200ms ease, box-shadow 200ms ease;
+}
+.pulsante:hover { background: color-mix(in srgb, var(--verde) 86%, var(--inchiostro)); box-shadow: var(--ombra); text-decoration: none; }
+.pulsante svg { width: 20px; height: 20px; flex: none; }
+.pulsante.piccolo { min-height: 44px; padding: 0 18px; font-size: 0.95rem; }
+
+.secondario-link { display: inline-flex; align-items: center; min-height: 48px; padding: 0 6px; font-weight: 550; text-decoration: none; }
+.secondario-link:hover { text-decoration: underline; }
+
+/* ── Apertura ───────────────────────────────────────────────────────────── */
+
+.apertura { padding: clamp(40px, 8vw, 96px) 0 clamp(56px, 9vw, 112px); }
+.apertura .contenitore { display: grid; gap: clamp(40px, 6vw, 72px); align-items: center; grid-template-columns: 1.1fr 0.9fr; }
+@media (max-width: 900px) { .apertura .contenitore { grid-template-columns: 1fr; } }
+
+.apertura .introduzione { font-size: clamp(1.1rem, 1.6vw, 1.28rem); }
+.azioni { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 32px; }
+.nota { margin: 18px 0 0; font-size: 0.9rem; color: var(--secondario); }
+
+/* Il telefono: una scheda ricetta disegnata con gli stessi elementi dell'app.
+   È un'illustrazione, non una schermata: le schermate vere stanno più giù. */
+.telefono {
+  justify-self: center;
+  width: min(100%, 340px);
+  aspect-ratio: 9 / 18.5;
+  padding: 10px;
+  border-radius: 46px;
+  background: var(--macchina);
+  border: 1px solid var(--linea-forte);
+  box-shadow: var(--ombra), 0 40px 80px -40px rgb(32 91 71 / 0.45);
+}
+.schermo {
+  height: 100%; overflow: hidden; border-radius: 37px;
+  background: var(--carta); padding: 46px 20px 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  font-size: 13px; line-height: 1.4;
+}
+.schermo .titolo-ricetta { font-size: 22px; font-weight: 580; letter-spacing: -0.02em; line-height: 1.15; font-variation-settings: "opsz" 24; }
+.pastiglie { display: flex; flex-wrap: wrap; gap: 6px; }
+.pastiglia { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; background: var(--campo); color: var(--secondario); font-size: 12px; font-weight: 520; }
+.pastiglia svg { width: 13px; height: 13px; }
+.pastiglia.verde { background: var(--verde-tinta); color: var(--verde); }
+.schermo .etichetta { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--secondario); font-weight: 600; }
+.ingredienti-finti { margin: 0; padding: 0; list-style: none; }
+.ingredienti-finti li { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--linea); }
+.ingredienti-finti li span:last-child { font-variant-numeric: tabular-nums; color: var(--secondario); }
+.ingredienti-finti .da-controllare span:last-child { color: var(--ambra); }
+.quadrante {
+  margin-top: auto; border-radius: 18px; padding: 14px;
+  background: var(--macchina); color: var(--macchina-testo);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center;
+}
+.quadrante strong { display: block; font-size: 18px; font-weight: 560; color: #fafaf8; font-variant-numeric: tabular-nums; }
+.quadrante span { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.quadrante div + div { border-left: 1px solid var(--macchina-linea); }
+
+/* ── Sezioni ────────────────────────────────────────────────────────────── */
+
+.sezione { padding: clamp(64px, 10vw, 120px) 0; }
+.sezione.alzata { background: var(--alzata); border-block: 1px solid var(--linea); }
+.testa { max-width: var(--stretto); margin-bottom: clamp(36px, 5vw, 56px); }
+
+/* Da dove arriva: quattro ingressi */
+.ingressi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 0; padding: 0; list-style: none; }
+@media (max-width: 900px) { .ingressi { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .ingressi { grid-template-columns: 1fr; } }
+.ingressi li { padding: 24px; border: 1px solid var(--linea); border-radius: var(--raggio); background: var(--carta); }
+.sezione:not(.alzata) .ingressi li { background: var(--alzata); }
+.icona { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--verde-tinta); color: var(--verde); margin-bottom: 18px; }
+.icona svg { width: 22px; height: 22px; }
+.ingressi p, .trasformazioni p, .fiducia p { margin: 8px 0 0; color: var(--secondario); }
+
+/* Le trasformazioni */
+.trasformazioni { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--linea); }
+.trasformazioni li { display: grid; grid-template-columns: 72px 1fr 1.2fr; gap: 24px; padding: 32px 0; border-bottom: 1px solid var(--linea); align-items: start; }
+.trasformazioni .numero { font-size: 0.85rem; font-weight: 600; color: var(--verde); font-variant-numeric: tabular-nums; padding-top: 4px; }
+.trasformazioni h3 { font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-variation-settings: "opsz" 28; }
+.trasformazioni p { margin: 0; max-width: 60ch; }
+@media (max-width: 760px) {
+  .trasformazioni li { grid-template-columns: 1fr; gap: 10px; }
+}
+
+.esempio {
+  margin-top: 40px; padding: 24px 28px; border-radius: var(--raggio);
+  background: var(--ambra-tinta); color: var(--inchiostro);
+  display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start;
+  max-width: 760px;
+}
+.esempio svg { width: 24px; height: 24px; color: var(--ambra); margin-top: 2px; }
+.esempio p { margin: 0; }
+.esempio strong { font-weight: 620; }
+
+/* Combinazione */
+.catena { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 8px; padding: 0; list-style: none; }
+.catena li { padding: 10px 16px; border-radius: 999px; border: 1px solid var(--linea-forte); background: var(--alzata); font-weight: 540; }
+.catena li.freccia { padding: 0; border: 0; background: none; color: var(--secondario); }
+.catena li.freccia svg { width: 18px; height: 18px; }
+.catena li:last-child { background: var(--verde); color: var(--su-verde); border-color: var(--verde); }
+
+/* Schermate */
+.galleria {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(220px, 260px);
+  gap: 20px; overflow-x: auto; padding: 4px var(--margine) 24px;
+  margin-inline: calc(-1 * var(--margine));
+  scroll-snap-type: x mandatory; scroll-padding-inline: var(--margine);
+  list-style: none; margin-block: 0;
+}
+.galleria li { scroll-snap-align: start; }
+.galleria figure { margin: 0; }
+.galleria img { width: 100%; height: auto; border-radius: 28px; border: 1px solid var(--linea); background: var(--campo); box-shadow: var(--ombra); }
+.galleria figcaption { margin-top: 12px; font-size: 0.95rem; color: var(--secondario); }
+
+/* Fiducia */
+.fiducia { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 32px; margin: 0; padding: 0; list-style: none; }
+@media (max-width: 900px) { .fiducia { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .fiducia { grid-template-columns: 1fr; } }
+.fiducia li { padding-top: 20px; border-top: 2px solid var(--verde); }
+
+.segni { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.segno-dato { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 0.85rem; font-weight: 540; }
+.segno-dato::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.segno-dato.letto { background: var(--verde-tinta); color: var(--verde); }
+.segno-dato.interpretato { background: var(--ambra-tinta); color: color-mix(in srgb, var(--ambra) 82%, var(--inchiostro)); }
+.segno-dato.mancante { background: var(--ruggine-tinta); color: var(--ruggine); }
+
+/* Crediti */
+.crediti { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+@media (max-width: 860px) { .crediti { grid-template-columns: 1fr; } }
+.conto { padding: 28px; border-radius: 22px; background: var(--alzata); border: 1px solid var(--linea); box-shadow: var(--ombra); }
+.conto .saldo { font-size: clamp(3rem, 7vw, 4.4rem); font-weight: 600; letter-spacing: -0.04em; line-height: 1; color: var(--verde); font-variant-numeric: tabular-nums; font-variation-settings: "opsz" 32; }
+.conto .saldo small { font-size: 1rem; letter-spacing: 0; color: var(--secondario); font-weight: 500; margin-left: 8px; }
+.conto ul { margin: 22px 0 0; padding: 0; list-style: none; }
+.conto li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid var(--linea); }
+.conto li span:last-child { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.conto .gratis { color: var(--verde); }
+
+/* Domande */
+.domande { max-width: 760px; border-top: 1px solid var(--linea); }
+.domande details { border-bottom: 1px solid var(--linea); }
+.domande summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  min-height: 64px; padding: 16px 0; cursor: pointer; list-style: none;
+  font-size: 1.08rem; font-weight: 560;
+}
+.domande summary::-webkit-details-marker { display: none; }
+.domande summary svg { width: 20px; height: 20px; flex: none; color: var(--secondario); transition: transform 200ms ease; }
+.domande details[open] summary svg { transform: rotate(45deg); }
+.domande summary:hover { color: var(--verde); }
+.domande details > div { padding: 0 0 22px; color: var(--secondario); max-width: 64ch; }
+.domande details p { margin: 0 0 10px; }
+
+/* Chiusura */
+.chiusura { text-align: center; }
+.chiusura .contenitore { display: flex; flex-direction: column; align-items: center; }
+.chiusura .introduzione { margin-inline: auto; }
+.chiusura .azioni { justify-content: center; }
+
+/* Piede */
+.piede { padding: 48px 0 40px; border-top: 1px solid var(--linea); font-size: 0.92rem; color: var(--secondario); }
+.piede .contenitore { display: grid; gap: 28px; }
+.piede .righe { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 32px; align-items: center; }
+.piede ul { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding: 0; list-style: none; }
+.piede a:not(.marchio) { color: var(--secondario); display: inline-block; padding: 12px 0; }
+.piede a:not(.marchio):hover { color: var(--inchiostro); }
+.piede .marchi { margin: 0; max-width: 80ch; font-size: 0.85rem; line-height: 1.55; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+.simboli { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* Stato del rilascio: l'app è in test, si cercano collaudatori. */
+.stato {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin: 0 0 18px; padding: 6px 14px 6px 12px; border-radius: 999px;
+  background: var(--verde-tinta); color: var(--verde);
+  font-size: 0.88rem; font-weight: 580;
+}
+.stato .punto { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 22%, transparent); }

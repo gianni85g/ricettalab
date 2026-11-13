@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RicettaLab — Le tue ricette, a modo tuo</title>
+  <meta name="description" content="Importa una ricetta da un link, una foto, un testo o la voce. RicettaLab la mette in ordine, calcola le calorie per porzione e la adatta al tuo robot da cucina.">
+  <meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141613" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://gianni85g.github.io/ricettalab/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:site_name" content="RicettaLab">
+  <meta property="og:title" content="RicettaLab — Le tue ricette, a modo tuo">
+  <meta property="og:description" content="Una ricetta, da qualunque fonte. Il tuo modo di cucinarla: più leggera, per il robot, per quante persone vuoi.">
+  <meta property="og:image" content="https://gianni85g.github.io/ricettalab/img/anteprima.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icona-180.png">
+  <link rel="preload" href="font/inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="stile.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "RicettaLab",
+    "operatingSystem": "Android",
+    "applicationCategory": "LifestyleApplication",
+    "inLanguage": "it",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+  }
+  </script>
+</head>
+<body>
+  <a class="salta" href="#contenuto">Vai al contenuto</a>
+
+  <!-- Il marchio dell'app (app/lib/ui/presentazione/marchio.dart), in SVG:
+       una ciotola con due foglie. Definito una volta, usato con <use>. -->
+  <svg class="simboli" aria-hidden="true">
+    <symbol id="marchio" viewBox="0 0 100 100">
+      <path fill="currentColor" d="M12 60H88C86 86 70 96 50 96C30 96 14 86 12 60Z"/>
+      <rect fill="currentColor" x="6" y="53" width="88" height="5.5" rx="3"/>
+      <path fill="currentColor" d="M50 50Q30 40 40 14Q52 34 50 50Z"/>
+      <path fill="currentColor" d="M52 50Q78 42 80 20Q58 34 52 50Z"/>
+      <rect fill="currentColor" x="48.5" y="30" width="3.5" height="24" rx="2"/>
+    </symbol>
+    <symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M4.6 2.3c-.3.3-.4.7-.4 1.2v17c0 .5.1.9.4 1.2l9.5-9.7zM15.2 13.1l2.7 2.7-11.9 6.8c-.4.2-.8.3-1.1.2zM18.9 9.4l3 1.7c.9.5.9 1.3 0 1.8l-3 1.7-2.9-2.6zM6 1.4l11.9 6.8-2.7 2.7L4.9 1.2c.3-.1.7 0 1.1.2z"/></symbol>
+  </svg>
+
+  <header class="barra" id="barra">
+    <div class="contenitore">
+      <a class="marchio" href="#" aria-label="RicettaLab, inizio pagina">
+        <span class="segno"><svg aria-hidden="true"><use href="#marchio"/></svg></span>
+        RicettaLab
+      </a>
+      <nav aria-label="Sezioni">
+        <ul class="voci">
+          <li><a href="#come">Come funziona</a></li>
+          <li><a href="#trasforma">Trasforma</a></li>
+          <li><a href="#crediti">Crediti</a></li>
+          <li><a href="#domande">Domande</a></li>
+        </ul>
+      </nav>
+      <a class="pulsante piccolo" href="mailto:infogiogustudio@gmail.com?subject=Vorrei%20provare%20RicettaLab">Prova l'app</a>
+    </div>
+  </header>
+
+  <main id="contenuto">
+
+    <!-- ── Apertura ─────────────────────────────────────────────────────── -->
+    <section class="apertura" aria-labelledby="titolo">
+      <div class="contenitore">
+        <div>
+          <p class="stato"><span class="punto" aria-hidden="true"></span>In test per Google Play · cerchiamo tester</p>
+          <h1 id="titolo">Una ricetta.<br>Il tuo modo di cucinarla.</h1>
+          <p class="introduzione">
+            Un link, una foto del ricettario della nonna, un testo o la tua voce:
+            RicettaLab la mette in ordine, calcola le calorie per porzione e la
+            riscrive per il tuo robot da cucina.
+          </p>
+          <div class="azioni">
+            <a class="pulsante" href="mailto:infogiogustudio@gmail.com?subject=Vorrei%20provare%20RicettaLab">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              Diventa tester
+            </a>
+            <a class="secondario-link" href="#come">Come funziona</a>
+          </div>
+          <p class="nota">App per Android, in test prima dell'uscita su Google Play. Scrivici se vuoi provarla: ti aggiungiamo all'elenco dei tester.</p>
+        </div>
+
+        <!-- Illustrazione disegnata con gli elementi dell'app, non una schermata. -->
+        <div class="telefono" aria-hidden="true">
+          <div class="schermo">
+            <div class="titolo-ricetta">Risotto alla zucca, più leggero</div>
+            <div class="pastiglie">
+              <span class="pastiglia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>35 min</span>
+              <span class="pastiglia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>4</span>
+              <span class="pastiglia verde">412 kcal · −96</span>
+            </div>
+            <div class="etichetta">Ingredienti</div>
+            <ul class="ingredienti-finti">
+              <li><span>Riso Carnaroli</span><span>320 g</span></li>
+              <li><span>Zucca</span><span>400 g</span></li>
+              <li><span>Brodo vegetale</span><span>1 l</span></li>
+              <li><span>Parmigiano</span><span>40 g</span></li>
+              <li class="da-controllare"><span>Burro → olio evo</span><span>15 g</span></li>
+            </ul>
+            <div class="quadrante">
+              <div><strong>18:00</strong><span>Tempo</span></div>
+              <div><strong>100°</strong><span>Temp.</span></div>
+              <div><strong>↺ 1</strong><span>Vel.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Da dove arriva ───────────────────────────────────────────────── -->
+    <section class="sezione alzata" id="come" aria-labelledby="titolo-come">
+      <div class="contenitore">
+        <div class="testa">
+          <p class="sopratitolo">Come funziona</p>
+          <h2 id="titolo-come">Da qualunque fonte, una scheda pulita.</h2>
+          <p class="introduzione">
+            Dosi convertite in grammi, procedimento diviso passo per passo,
+            porzioni e calorie. Prima di salvare controlli tu: ogni campo si
+            corregge.
+          </p>
+        </div>
+        <ul class="ingressi">
+          <li>
+            <div class="icona"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div>
+            <h3>Un link</h3>
+            <p>Incolla l'indirizzo o condividi la pagina dal browser.</p>
+          </li>
+          <li>
+            <div class="icona"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></svg></div>
+            <h3>Una foto</h3>
+            <p>La pagina di un libro o un foglio scritto a mano. Si legge sul telefono.</p>
+          </li>
+          <li>
+            <div class="icona"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+            <h3>Un testo</h3>
+            <p>Da un messaggio, una nota, un'email: incollalo così com'è.</p>
+          </li>
+          <li>
+            <div class="icona"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4"/></svg></div>
+            <h3>La voce</h3>
+            <p>Detta la ricetta, o cosa c'è in frigo: ti proponiamo tre idee.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Trasformazioni ───────────────────────────────────────────────── -->
+    <section class="sezione" id="trasforma" aria-labelledby="titolo-trasforma">
+      <div class="contenitore">
+        <div class="testa">
+          <p class="sopratitolo">Trasforma</p>
+          <h2 id="titolo-trasforma">Una ricetta non è un contenuto fisso. È una base.</h2>
+          <p class="introduzione">
+            Ogni trasformazione produce una versione nuova. L'originale resta
+            com'era: chi ha salvato una carbonara vuole ritrovare la carbonara.
+          </p>
+        </div>
+
+        <ol class="trasformazioni">
+          <li>
+            <span class="numero">01</span>
+            <h3>Originale</h3>
+            <p>La ricetta messa in ordine: ingredienti in grammi, passi numerati,
+              porzioni e calorie da una banca dati di alimenti italiani. Ogni
+              dato dice da dove viene.</p>
+          </li>
+          <li>
+            <span class="numero">02</span>
+            <h3>Per il robot</h3>
+            <p>Il procedimento riscritto con tempo, temperatura e velocità per il
+              tuo robot da cucina, da una tabella curata a mano. Quello che nel
+              boccale non si fa viene detto, e se le dosi non ci stanno l'app
+              si ferma.</p>
+          </li>
+          <li>
+            <span class="numero">03</span>
+            <h3>Più leggera</h3>
+            <p>Sostituzioni che tolgono calorie senza snaturare il piatto, con il
+              conto di quanto si risparmia a porzione.</p>
+          </li>
+          <li>
+            <span class="numero">04</span>
+            <h3>Adattata</h3>
+            <p>Per sei invece che per quattro, senza latte, con quello che hai:
+              la stessa ricetta, cambiata dove serve e solo lì.</p>
+          </li>
+        </ol>
+
+        <div class="esempio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+          <p><strong>Lo yogurt al posto della panna impazzisce se bolle.</strong>
+            RicettaLab lo sa, e invece di proportelo ti avvisa. Conta il ruolo
+            che un ingrediente ha nel piatto, non solo le sue calorie.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Schermate ─────────────────────────────────────────────────────
+         Le immagini vengono da app/tool/schermate_sito_test.dart (ricette
+         finte), convertite in WebP a 540 e 1080 px; la variante -scuro segue
+         il tema del telefono. -->
+    <section class="sezione" id="schermate" aria-labelledby="titolo-schermate">
+      <div class="contenitore">
+        <div class="testa">
+          <p class="sopratitolo">L'app</p>
+          <h2 id="titolo-schermate">Poche parole, i dati in vista.</h2>
+        </div>
+        <ul class="galleria">
+          <li><figure>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="img/home-scuro.webp 540w, img/home-scuro@2x.webp 1080w" sizes="260px">
+              <img src="img/home.webp" srcset="img/home.webp 540w, img/home@2x.webp 1080w" sizes="260px" width="540" height="1170" loading="lazy" decoding="async" alt="La Home di RicettaLab con le ricette aggiunte di recente, calorie, tempi e porzioni">
+            </picture>
+            <figcaption>Le tue ricette</figcaption>
+          </figure></li>
+          <li><figure>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="img/ricetta-scuro.webp 540w, img/ricetta-scuro@2x.webp 1080w" sizes="260px">
+              <img src="img/ricetta.webp" srcset="img/ricetta.webp 540w, img/ricetta@2x.webp 1080w" sizes="260px" width="540" height="1170" loading="lazy" decoding="async" alt="Scheda di una ricetta con tempi, porzioni, calorie e ingredienti in grammi">
+            </picture>
+            <figcaption>La scheda</figcaption>
+          </figure></li>
+          <li><figure>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="img/robot-scuro.webp 540w, img/robot-scuro@2x.webp 1080w" sizes="260px">
+              <img src="img/robot.webp" srcset="img/robot.webp 540w, img/robot@2x.webp 1080w" sizes="260px" width="540" height="1170" loading="lazy" decoding="async" alt="Procedimento per il robot da cucina con tempo, temperatura e velocità per ogni passo">
+            </picture>
+            <figcaption>Per il robot</figcaption>
+          </figure></li>
+          <li><figure>
+            <picture>
+              <source media="(prefers-color-scheme: dark)" srcset="img/leggera-scuro.webp 540w, img/leggera-scuro@2x.webp 1080w" sizes="260px">
+              <img src="img/leggera.webp" srcset="img/leggera.webp 540w, img/leggera@2x.webp 1080w" sizes="260px" width="540" height="1170" loading="lazy" decoding="async" alt="Versione leggera con le sostituzioni e le calorie risparmiate">
+            </picture>
+            <figcaption>Più leggera</figcaption>
+          </figure></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Fiducia ───────────────────────────────────────────────────────── -->
+    <section class="sezione alzata" aria-labelledby="titolo-fiducia">
+      <div class="contenitore">
+        <div class="testa">
+          <p class="sopratitolo">Di cosa ti puoi fidare</p>
+          <h2 id="titolo-fiducia">Non tira a indovinare. Te lo dice.</h2>
+        </div>
+        <ul class="fiducia">
+          <li>
+            <h3>Ogni dato ha una fonte</h3>
+            <p>Letto dal sito, interpretato o mancante: un segno colorato lo
+              dice, e il dettaglio è a un tocco.</p>
+            <div class="segni" aria-hidden="true">
+              <span class="segno-dato letto">letto</span>
+              <span class="segno-dato interpretato">da controllare</span>
+              <span class="segno-dato mancante">mancante</span>
+            </div>
+          </li>
+          <li>
+            <h3>Le ricette restano tue</h3>
+            <p>Salvate sul telefono, funzionano senza rete. Accedi con Google
+              solo per usare l'AI.</p>
+          </li>
+          <li>
+            <h3>Niente foto altrui</h3>
+            <p>Le immagini dei siti sono di chi le ha scattate: l'app mostra la
+              fonte e la apre. L'unica foto è quella del piatto che hai cucinato tu.</p>
+          </li>
+          <li>
+            <h3>Calorie oneste</h3>
+            <p>Calcolate dagli ingredienti o prese dal sito quando le dichiara,
+              e l'app dice sempre quale delle due.</p>
+          </li>
+          <li>
+            <h3>Robot senza invenzioni</h3>
+            <p>Velocità e tempi vengono da una tabella scritta a mano, non da un
+              modello che improvvisa.</p>
+          </li>
+          <li>
+            <h3>Nessuna pubblicità</h3>
+            <p>Né banner né profilazione. L'app si paga solo quando usi l'AI.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Crediti ──────────────────────────────────────────────────────── -->
+    <section class="sezione" id="crediti" aria-labelledby="titolo-crediti">
+      <div class="contenitore crediti">
+        <div>
+          <p class="sopratitolo">Crediti</p>
+          <h2 id="titolo-crediti">Gratis per cucinare. Un credito quando lavora l'AI.</h2>
+          <p class="introduzione">
+            Importare, salvare e cucinare non costa niente. Le funzioni che usano
+            l'AI costano un credito per pulsante, e se il risultato non va il
+            credito torna da solo.
+          </p>
+        </div>
+        <div class="conto">
+          <div class="saldo">10<small>crediti in regalo</small></div>
+          <ul>
+            <li><span>Importare da link, foto, testo, voce</span><span class="gratis">Gratis</span></li>
+            <li><span>Salvare, cucinare passo per passo</span><span class="gratis">Gratis</span></li>
+            <li><span>Più leggera, Adatta, Per il robot</span><span>1 credito</span></li>
+            <li><span>Crea: tre proposte e la ricetta</span><span>1 credito</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Domande ───────────────────────────────────────────────────────── -->
+    <section class="sezione alzata" id="domande" aria-labelledby="titolo-domande">
+      <div class="contenitore">
+        <div class="testa">
+          <p class="sopratitolo">Domande</p>
+          <h2 id="titolo-domande">Prima di installarla.</h2>
+        </div>
+        <div class="domande">
+          <details>
+            <summary>Con quali robot da cucina funziona?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <div>
+              <p>Bimby® TM6 e TM7, Monsieur Cuisine, e un profilo generico per
+                gli altri robot. I procedimenti sono adattamenti indicativi, non
+                verificati su macchina e non ufficiali del costruttore.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Come posso provarla prima dell'uscita?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <div>
+              <p>RicettaLab è in test su Google Play prima del rilascio. Scrivi a
+                <a href="mailto:infogiogustudio@gmail.com?subject=Vorrei%20provare%20RicettaLab">infogiogustudio@gmail.com</a> con l'indirizzo Gmail
+                che usi sul telefono Android: ti aggiungiamo ai tester e ti mandiamo
+                il link per installarla dal Play Store.</p>
+              <p>Durante il test i tuoi commenti contano: cosa non funziona, cosa
+                manca, quale ricetta non è stata capita.</p>
+            </div>
+          </details>
+          <details>
+            <summary>C'è per iPhone?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <div><p>Per ora solo Android.</p></div>
+          </details>
+          <details>
+            <summary>Dove finiscono le mie ricette?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <div>
+              <p>Sul telefono. Escono solo quando scegli tu: per importarle da un
+                link, per usare l'AI o per condividerle con un link. I dettagli
+                sono nell'<a href="https://ricettario-server.onrender.com/privacy">informativa sulla privacy</a>.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Posso condividere una ricetta con chi non ha l'app?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <div>
+              <p>Sì. Il link si apre in qualunque browser; chi ha RicettaLab la
+                salva con un tocco. Puoi togliere il link quando vuoi.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Cosa succede quando finiscono i crediti?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <div>
+              <p>Tutto il resto continua a funzionare: le ricette salvate,
+                l'importazione, le calorie, la cottura guidata. Servono crediti
+                solo per le funzioni con l'AI.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Come elimino il mio account?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary>
+            <div>
+              <p>Dall'app, in Impostazioni → «Elimina account e dati». Oppure
+                segui le <a href="https://ricettario-server.onrender.com/account/elimina">istruzioni per l'eliminazione</a>.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Chiusura ─────────────────────────────────────────────────────── -->
+    <section class="sezione chiusura" aria-labelledby="titolo-chiusura">
+      <div class="contenitore">
+        <h2 id="titolo-chiusura">Trova una ricetta. Rendila tua.</h2>
+        <p class="introduzione">L'app è in test prima dell'uscita su Google Play.
+          Se vuoi provarla, scrivici: ti aggiungiamo ai tester, con dieci crediti in regalo.</p>
+        <div class="azioni">
+          <a class="pulsante" href="mailto:infogiogustudio@gmail.com?subject=Vorrei%20provare%20RicettaLab">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            Diventa tester
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="piede">
+    <div class="contenitore">
+      <div class="righe">
+        <a class="marchio" href="#" aria-label="RicettaLab, inizio pagina">
+          <span class="segno"><svg aria-hidden="true"><use href="#marchio"/></svg></span>
+          RicettaLab
+        </a>
+        <ul>
+          <li><a href="https://ricettario-server.onrender.com/privacy">Privacy</a></li>
+          <li><a href="https://ricettario-server.onrender.com/account/elimina">Eliminare l'account</a></li>
+          <li><a href="mailto:infogiogustudio@gmail.com">Contatti</a></li>
+        </ul>
+      </div>
+      <p class="marchi">
+        Bimby® e Thermomix® sono marchi registrati Vorwerk; Monsieur Cuisine è
+        un marchio dei rispettivi titolari. RicettaLab non è affiliata,
+        autorizzata né sponsorizzata da questi produttori. I procedimenti per i
+        robot da cucina sono adattamenti indicativi, non verificati su macchina,
+        e non sono procedure ufficiali del costruttore.
+        Google Play è un marchio di Google LLC.
+      </p>
+    </div>
+  </footer>
+
+  <script src="barra.js" defer></script>
+</body>
+</html>
