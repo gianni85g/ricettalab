@@ -322,3 +322,5 @@ h3 { font-size: 1.2rem; line-height: 1.3; font-variation-settings: "opsz" 20; }
   font-size: 0.88rem; font-weight: 580;
 }
 .stato .punto { width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 22%, transparent); }
+.presto { display: inline-flex; align-items: center; gap: 8px; margin: 20px 0 0; color: var(--secondario); font-size: 0.95rem; font-weight: 540; }
+.presto svg { width: 18px; height: 18px; color: var(--verde); }
